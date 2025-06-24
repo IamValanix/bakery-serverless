@@ -1,54 +1,39 @@
-# React + TypeScript + Vite
+# Last Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Bakery y BakeryBackend
+Versión con base de datos que utiliza:
+- **Backend**: Flask + PostgreSQL (base de datos local)
+- **Frontend**: React + Vite + TypeScript
+- **Estilos**: Tailwind CSS
 
-Currently, two official plugins are available:
+### Rutas principales:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **`/`** - Login  
+   Página de inicio de sesión para usuarios registrados. Contiene un botón para redirigir al registro si no se tiene cuenta.
 
-## Expanding the ESLint configuration
+2. **`/register`** - Registro  
+   Permite crear nuevas cuentas. Después del registro, redirige al login para iniciar sesión.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. **`/landing`** - Catálogo  
+   Muestra los productos disponibles de la panadería.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+4. **`/admin`** - Panel de administración  
+   Área exclusiva para administradores con funcionalidades CRUD para gestionar usuarios.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Bakery Serverless
+Versión simplificada sin backend que utiliza LocalStorage.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Rutas principales:
+
+1. **`/`** - Registro  
+   Permite crear usuarios nuevos (almacenados en LocalStorage). Redirige al login después del registro.
+
+2. **`/login`** - Autenticación  
+   Permite iniciar sesión con usuarios registrados. Al autenticarse, redirige al panel de admin.
+
+3. **`/admin`** - Administración  
+   Panel para modificar y eliminar usuarios almacenados en LocalStorage.
+
+> **Nota importante**: En la versión con base de datos, la restricción de acceso se implementa en la barra de búsqueda de la ruta `/landing`.
